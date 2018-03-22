@@ -1,25 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>INDEX PAGE</title>
-</head>
-<body>
-{% load staticfiles %}
-<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
+{% extends 'app/base.html' %}
 
-<link rel="stylesheet" type="text/css" href="{% static 'myapp/myapp.css' %}"/>
-<nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">Music App</a>
-            <a class="navbar-brand" href="#">Favorite</a>
-            <a class="navbar-brand" href="#">Add Album</a>
-        </div>
-    </div>
-
-</nav>
-    <h4>Album Details</h4>
+{% block body %}
+<h4>Album Details</h4>
     {% if album %}
     <ul>
         <li>Title : {{ album.album_title }} Artist : {{ album.artist }} Gerne : {{ album.gerne }}</li>
@@ -50,6 +32,5 @@
 </form>
 
     <a href="/app/index" class="button">Go Back</a>
+{% endblock %}
 
-</body>
-</html>
