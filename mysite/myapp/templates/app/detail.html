@@ -5,23 +5,34 @@
     <title>INDEX PAGE</title>
 </head>
 <body>
-    <h1>Album Details</h1>
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
+
+<link rel="stylesheet" type="text/css" href="{% static 'myapp/myapp.css' %}"/>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Music App</a>
+            <a class="navbar-brand" href="#">Favorite</a>
+            <a class="navbar-brand" href="#">Add Album</a>
+        </div>
+    </div>
+
+</nav>
+    <h4>Album Details</h4>
     {% if album %}
     <ul>
-        <li>Title : {{ album.album_title }}</li>
-        <li>Artist : {{ album.artist }}</li>
-        <li>Gerne : {{ album.gerne }}</li>
+        <li>Title : {{ album.album_title }} Artist : {{ album.artist }} Gerne : {{ album.gerne }}</li>
     </ul>
-    <h2>Songs</h2>
+    <h4>Songs</h4>
     <ul>
         {% for song in album.song_set.all %}
         <li>{{ song.song_title }}</li>
         {% endfor %}
     </ul>
 {% else %}
-    <h3>No Details</h3>
+    <h4>No Details</h4>
 {% endif %}
-    <a href="/app/index">Go Back</a>
 {% if error_message %}
     <p><strong>{{ error_message }}</strong></p>
 {% endif %}
@@ -31,11 +42,14 @@
     <input type="radio" id="songs{{ forloop.counter }}" name="song" value="{{ songs.id }}">
         <label for="songs{{ forloop.counter }}">{{songs.song_title}}
     {% if songs.is_favorite %}
-    <h3>Fav</h3>
+    <img src="http://i.imgur.com/b9b13Rd.png"/>
     {% endif %}
         </label><br>
     {% endfor %}
-    <input type="submit" value="Fav">
+    <input type="submit" value="Make Favourite">
 </form>
+
+    <a href="/app/index" class="button">Go Back</a>
+
 </body>
 </html>
