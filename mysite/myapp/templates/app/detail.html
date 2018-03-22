@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>INDEX PAGE</title>
+</head>
+<body>
+    <h1>Album Details</h1>
+    {% if album %}
+    <ul>
+        <li>Title : {{ album.album_title }}</li>
+        <li>Artist : {{ album.artist }}</li>
+        <li>Gerne : {{ album.gerne }}</li>
+    </ul>
+    <h2>Songs</h2>
+    <ul>
+        {% for song in album.song_set.all %}
+        <li>{{ song.song_title }}</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <h3>No Details</h3>
+{% endif %}
+    <a href="/app/index">Go Back</a>
+{% if error_message %}
+    <p><strong>{{ error_message }}</strong></p>
+{% endif %}
+<form action="{% url 'favorite' album.id %}" method = "post">
+    {% csrf_token %}
+    {% for songs in album.song_set.all %}
+    <input type="radio" id="songs{{ forloop.counter }}" name="song" value="{{ songs.id }}">
+        <label for="songs{{ forloop.counter }}">{{songs.song_title}}
+    {% if songs.is_favorite %}
+    <h3>Fav</h3>
+    {% endif %}
+        </label><br>
+    {% endfor %}
+    <input type="submit" value="Fav">
+</form>
+</body>
+</html>
