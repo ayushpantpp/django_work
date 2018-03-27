@@ -6,6 +6,17 @@ from django.shortcuts import render, get_object_or_404
 # Create your views here.
 
 
+def login(request):
+    return render(request, 'app/login.html')
+
+
+def register(request):
+    return render(request, 'app/register.html')
+
+def contact_us(request):
+    return render(request, 'app/contact_us.html')
+
+
 def index(request):
 
     all_albums = Album.objects.all()

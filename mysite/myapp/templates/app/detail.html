@@ -1,36 +1,50 @@
 {% extends 'app/base.html' %}
+{% block title %}
+    <title>Detail Page</title>
+{% endblock %}
 
 {% block body %}
-<h4>Album Details</h4>
-    {% if album %}
-    <ul>
-        <li>Title : {{ album.album_title }} Artist : {{ album.artist }} Gerne : {{ album.gerne }}</li>
-    </ul>
-    <h4>Songs</h4>
-    <ul>
-        {% for song in album.song_set.all %}
-        <li>{{ song.song_title }}</li>
-        {% endfor %}
-    </ul>
-{% else %}
-    <h4>No Details</h4>
-{% endif %}
-{% if error_message %}
-    <p><strong>{{ error_message }}</strong></p>
-{% endif %}
-<form action="{% url 'favorite' album.id %}" method = "post">
-    {% csrf_token %}
-    {% for songs in album.song_set.all %}
-    <input type="radio" id="songs{{ forloop.counter }}" name="song" value="{{ songs.id }}">
-        <label for="songs{{ forloop.counter }}">{{songs.song_title}}
-    {% if songs.is_favorite %}
-    <img src="http://i.imgur.com/b9b13Rd.png"/>
-    {% endif %}
-        </label><br>
-    {% endfor %}
-    <input type="submit" value="Make Favourite">
-</form>
 
-    <a href="/app/index" class="button">Go Back</a>
-{% endblock %}
+<div class="container">
+  <h1 class="well">Album Details</h1>
+	<div class="col-lg-12 well">
+        {% if album %}
+        <div class="row">
+            <ul class="list-group">
+                {% for album in all_albums %}
+                <li class="list-group-item">Title : {{ album.album_title }} Artist : {{ album.artist }} Gerne : {{ album.gerne }} </li>
+                {% endfor %}
+            </ul>
+            <h1 class="well">Songs</h1>
+                {% else %}
+                    <h4>No Details</h4>
+                {% endif %}
+                {% if error_message %}
+                    <p><strong>{{ error_message }}</strong></p>
+                {% endif %}
+
+            <form action="{% url 'favorite' album.id %}" method = "post">
+                    {% csrf_token %}
+                    <ul class="list-group">
+                        {% for songs in album.song_set.all %}
+                            <li class="list-group-item">
+                            <input type="radio" id="songs{{ forloop.counter }}" name="song" value="{{ songs.id }}">
+                                <label for="songs{{ forloop.counter }}">{{songs.song_title}}
+                                    {% if songs.is_favorite %}
+                                        <img src="http://i.imgur.com/b9b13Rd.png"/>
+                                    {% endif %}
+                                </label>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                <input type="submit" class="btn" value="Make Favourite"> <a href="/app/index" class="btn">Go Back</a>
+            </form>
+
+
+            {% endblock %}
+
+        </div>
+    </div>
+
+</div>
 

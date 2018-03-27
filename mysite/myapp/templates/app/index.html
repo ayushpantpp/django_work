@@ -1,17 +1,25 @@
 {% extends 'app/base.html' %}
-
+{% block title %}
+    <title>INDEX PAGE</title>
+{% endblock %}
 {% block body %}
+<div class="container">
+  <h1 class="well">All Albums</h1>
+	<div class="col-lg-12 well">
+        {% if all_albums %}
+        <div class="row">
+            <ul class="list-group">
+                {% for album in all_albums %}
+                <li class="list-group-item"><a href="/app/{{ album.id }}"> {{ album.album_title }}</a> </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+                <h3>No Albums</h3>
+            {% endif %}
 
-    <h1>ALL ALBUMS</h1>
-    {% if all_albums %}
-    <ul>
-        {% for album in all_albums %}
-        <li><a href="/app/{{ album.id }}"> {{ album.album_title }}</a> </li>
-        {% endfor %}
-    </ul>
-{% else %}
-    <h3>No Albums</h3>
-{% endif %}
+        </div>
+    </div>
 
+</div>
 {% endblock %}
 
