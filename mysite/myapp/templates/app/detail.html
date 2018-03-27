@@ -16,35 +16,33 @@
                 {% endfor %}
             </ul>
             <h1 class="well">Songs</h1>
-                {% else %}
-                    <h4>No Details</h4>
-                {% endif %}
-                {% if error_message %}
-                    <p><strong>{{ error_message }}</strong></p>
-                {% endif %}
+            {% else %}
+                <h4>No Details</h4>
+            {% endif %}
+            {% if error_message %}
+                <p><strong>{{ error_message }}</strong></p>
+            {% endif %}
 
             <form action="{% url 'favorite' album.id %}" method = "post">
-                    {% csrf_token %}
-                    <ul class="list-group">
-                        {% for songs in album.song_set.all %}
-                            <li class="list-group-item">
-                            <input type="radio" id="songs{{ forloop.counter }}" name="song" value="{{ songs.id }}">
-                                <label for="songs{{ forloop.counter }}">{{songs.song_title}}
-                                    {% if songs.is_favorite %}
-                                        <img src="http://i.imgur.com/b9b13Rd.png"/>
-                                    {% endif %}
-                                </label>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                <input type="submit" class="btn" value="Make Favourite"> <a href="/app/index" class="btn">Go Back</a>
+                {% csrf_token %}
+                <ul class="list-group">
+                    {% for songs in album.song_set.all %}
+                        <li class="list-group-item">
+                        <input type="radio" id="songs{{ forloop.counter }}" name="song" value="{{ songs.id }}">
+                            <label for="songs{{ forloop.counter }}">{{songs.song_title}}
+                                {% if songs.is_favorite %}
+                                    <img src="http://i.imgur.com/b9b13Rd.png"/>
+                                {% endif %}
+                            </label>
+                        </li>
+                    {% endfor %}
+                </ul>
+            <input type="submit" class="btn" value="Make Favourite">  <a href="/app/index" class="btn">Go Back</a>
             </form>
-
-
-            {% endblock %}
-
         </div>
     </div>
 
 </div>
+
+ {% endblock %}
 
