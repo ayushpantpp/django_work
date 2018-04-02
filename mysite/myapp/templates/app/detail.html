@@ -10,12 +10,7 @@
 	<div class="col-lg-12 well">
         {% if album %}
         <div class="row">
-            <ul class="list-group">
-                {% for album in all_albums %}
-                <li class="list-group-item">Title : {{ album.album_title }} Artist : {{ album.artist }} Gerne : {{ album.gerne }} </li>
-                {% endfor %}
-            </ul>
-            <h1 class="well">Songs</h1>
+            <h3 class="well">Songs <button type="button" class="btn align-right"><a href="/app/add_new_song/{{album.pk}}">Add New Song</a></button></h3>
             {% else %}
                 <h4>No Details</h4>
             {% endif %}

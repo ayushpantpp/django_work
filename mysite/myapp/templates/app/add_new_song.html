@@ -1,0 +1,41 @@
+{% extends 'app/base.html' %}
+{% block title %}
+    <title>Add Songs</title>
+{% endblock %}
+
+{% block body %}
+<div class="container">
+  <h1 class="well">Add Song</h1>
+	<div class="col-lg-12 well">
+	<div class="row">
+				<form method="post" action="{% url 'add_song' %}">
+                    {% csrf_token %}
+                <input type="hidden" class="form-control" id="album" placeholder="Enter Title" name="album" value="{{ album.pk }}">
+                <div class="fieldWrapper">
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="song_title">Song Title:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="song_title" placeholder="Enter Artist" name="song_title">
+                        </div>
+                    </div>
+                    {{ field.errors }}
+            	</div>
+    			<div class="fieldWrapper">
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="file_type">File Type:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="file_type" placeholder="File Type" name="file_type">
+                        </div>
+                    </div>
+                    {{ field.errors }}
+            	</div>
+    			</div>
+    				<button type="submit" class="btn btn-lg btn-info">Submit</button>
+				</form>
+				</div>
+	</div>
+
+</div>
+
+{% endblock %}
+

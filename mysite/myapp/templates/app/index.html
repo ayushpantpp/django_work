@@ -4,22 +4,26 @@
 {% endblock %}
 {% block body %}
 <div class="container">
-  <h1 class="well">All Albums</h1>
-	<div class="col-lg-12 well">
+    <h1 class="well">All Albums <button type="button" class="btn align-right"><a href="/app/add_new_album">Add New Album</a></button></h1>
         {% if all_albums %}
         <div class="row">
-            <ul class="list-group">
-                {% for album in all_albums %}
-                <li class="list-group-item"><a href="/app/{{ album.id }}"> {{ album.album_title }}</a> </li>
-                {% endfor %}
-            </ul>
-            {% else %}
-                <h3>No Albums</h3>
-            {% endif %}
 
+        {% for album in all_albums %}
+         <div class="col-sm-3">
+
+            <div class="panel-group">
+                 <div class="panel panel-default">
+                    <div class="panel-heading"><a href="/app/{{ album.id }}"><img src="https://www.w3schools.com/bootstrap/cinqueterre.jpg" class="img-rounded" alt="Cinque Terre" width="200" height="200"></a></div>
+                    <div class="panel-body">Name: {{ album.album_title }} </div>
+                    <div class="panel-body">Artist: {{ album.gerne }} </div>
+                    <div class="panel-body">No of Songs: {{ album.song_set.count }} </div>
+                </div>
+            </div>
         </div>
-    </div>
+        {% endfor %}
+            </div>
 
-</div>
+            {% endif %}
+        </div>
 {% endblock %}
 

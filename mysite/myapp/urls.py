@@ -12,6 +12,10 @@ urlpatterns = [
     #url(r'^login$', views.login),
     url(r'^register$', views.register),
     url(r'^contact_us$', views.contact_us),
+    url(r'^add_new_album$', views.add_new_album),
+    url(r'^add_new_song/(?P<album_pk>[0-9]+)$', views.add_new_song),
+    url(r'^add_album$', views.add_album, name="add_album"),
+    url(r'^add_song$', views.add_song, name="add_song"),
     url(r'^(?P<album_id>[0-9]+)$', views.detail, name="details"),
     url(r'^(?P<album_id>[0-9]+)/favorite/$', views.favorite, name="favorite")
 ]

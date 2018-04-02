@@ -1,0 +1,57 @@
+{% extends 'app/base.html' %}
+{% block title %}
+    <title>Add Albums</title>
+{% endblock %}
+
+{% block body %}
+<div class="container">
+  <h1 class="well">Add Albums</h1>
+	<div class="col-lg-12 well">
+	<div class="row">
+				<form method="post" action="{% url 'add_album' %}">
+                    {% csrf_token %}
+                <div class="fieldWrapper">
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="album_title">Title:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="album_title" placeholder="Enter Title" name="album_title">
+                        </div>
+                    </div>
+                    {{ field.errors }}
+            	</div>
+    			<div class="fieldWrapper">
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="artist">Artist:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="album_artist" placeholder="Enter Artist" name="artist">
+                        </div>
+                    </div>
+                    {{ field.errors }}
+            	</div>
+    			<div class="fieldWrapper">
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="gerne">Gerne:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="album_gerne" placeholder="Enter Gerne" name="gerne">
+                        </div>
+                    </div>
+                    {{ field.errors }}
+            	</div>
+    			<div class="fieldWrapper">
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="album_logo">Logo:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="album_album_logo" placeholder="Enter Logo" name="album_logo">
+                        </div>
+                    </div>
+                    {{ field.errors }}
+            	</div>
+    				<button type="submit" class="btn btn-lg btn-info">Submit</button>
+				</form>
+				</div>
+	</div>
+
+</div>
+
+{% endblock %}
+
