@@ -28,6 +28,7 @@
                                 {% if songs.is_favorite %}
                                     <img src="http://i.imgur.com/b9b13Rd.png"/>
                                 {% endif %}
+                                <a href="/app/delete_song/{{ songs.id }}">Delete</a>
                             </label>
                         </li>
                     {% endfor %}

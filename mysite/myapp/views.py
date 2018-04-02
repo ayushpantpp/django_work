@@ -86,3 +86,15 @@ def add_song(request):
     song_set_data.file_type = request.POST['file_type']
     song_set_data.save()
     return HttpResponseRedirect('index')
+
+
+def delete_album(request, album_id):
+    instance = Album.objects.get(pk=album_id)
+    instance.delete()
+    return HttpResponseRedirect('/app/index')
+
+
+def delete_song(request, song_id):
+    instance = song.objects.get(pk=song_id)
+    instance.delete()
+    return HttpResponseRedirect('/app/index')

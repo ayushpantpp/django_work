@@ -17,7 +17,9 @@
                     <div class="panel-body">Name: {{ album.album_title }} </div>
                     <div class="panel-body">Artist: {{ album.gerne }} </div>
                     <div class="panel-body">No of Songs: {{ album.song_set.count }} </div>
+                    <div class="panel-body"><a href="/app/delete_album/{{ album.id }}">Delete</a></div>
                 </div>
+
             </div>
         </div>
         {% endfor %}
